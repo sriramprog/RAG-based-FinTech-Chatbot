@@ -1,25 +1,56 @@
-# Initial Analysis – How to Read This Folder
+## Initial Analysis – How to Read This Folder
+This folder contains early-stage analysis notebooks and supporting documents used to explore, validate, and understand scanned and unstructured financial PDFs before designing the full Retrieval-Augmented Generation (RAG) system.
 
-This folder contains early-stage analysis notebooks and supporting documents
-used to explore, validate, and understand financial PDFs before building the
-full RAG system.
+The work here focuses on document understanding, OCR quality, layout preservation, and feasibility validation, laying the groundwork for all downstream pipeline and optimization decisions.
 
-### Purpose of this folder:
-- Examine scanned and unstructured financial documents
-- Evaluate OCR quality and layout preservation
-- Validate document suitability for downstream retrieval and QA tasks
+# Purpose of This Folder
+- Examine scanned and semi-structured financial documents
+- Evaluate OCR accuracy and layouts on real-world PDFs
+- Understand document structure and key field locations
+- Validate document suitability for chunking, embedding, and retrieval tasks
 
-### What’s included:
-- Jupyter notebooks focused on document inspection and OCR experiments
-- Example financial PDFs (e.g., mortgage documents, fee worksheets) used as
-  consistent inputs across analyses
+# What’s Included
+1. Scanned PDF Analysis
+Task_Analyze_a_Scanned_PDF.ipynb:
+- Analyzes a scanned mortgage document end-to-end
+- Explores OCR output, text quality, and layout issues
+- Identifies challenges such as noise, misalignment, and missing fields
 
-### How to navigate:
-1. _analyze_scanned_pdf_ consists of code to analyze a scanned PDF that extracts key sections of the mortgage document and includes the PDF file showing the highlighted sections.
-2. _query_chunking_embedding_ consists of 2 independent notebooks that explains how to process queries if worded differently, and goes over chunking and embedding techniques used as part of experimentation.
-3. _initial_rag_pipeline_ consists of code to demonstrate an open-source model (Gemini) from parsing PDF to chunking and embedding, and demonstrates the overall design workflow.
+Extract Key Fields (Scanned Mortgage PDF).pdf:
+- Reference PDF highlighting important mortgage fields
+- Used to visually validate OCR and extraction accuracy
 
-### Important context:
-- These notebooks represent exploratory analysis, not final system design.
-- The same documents may appear in later folders to support controlled
-  comparisons across different techniques.
+2. Chunking, Embeddings, and Retrieval Foundations
+Task_Implementing_Chunking_&_Embeddings_in_LlamaIndex.ipynb:
+- Experiments with chunking strategies and embedding workflows
+- Tests how document segmentation choices impact retrieval quality
+- Establishes a baseline ingestion approach using LlamaIndex
+
+Task_Hands_On_Query_Processing_&_Retrieval_Optimization.ipynb:
+- Hands-on experimentation with query phrasing and retrieval behavior
+- Evaluates how differently worded queries surface results
+- Highlights early failure cases and retrieval limitations
+
+3. Initial RAG Pipeline Baseline
+Task_Build_and_Optimize_a_RAG_pipeline.ipynb:
+- Demonstrates a baseline, end-to-end RAG workflow: PDF parsing → chunking → embedding → retrieval → answer generation
+- Serves as the first “full loop” prototype before later optimizations
+= Establishes the initial system design workflow used as a reference point for future comparisons
+
+# How to Navigate
+Notebooks are best read top-down, starting with scanned PDF analysis
+
+Each notebook isolates a specific question:
+- Can this document be reliably parsed?
+- Is OCR good enough for QA tasks?
+- How does chunking affect retrieval?
+- PDFs are included as ground truth references and reused across later stages
+
+# Important Context
+These notebooks are exploratory and diagnostic, not final system designs
+Code prioritizes clarity and inspection over performance or abstraction
+
+Findings here directly inform:
+- Segmentation strategies
+- Metadata design
+- Model evaluation experiments in later folders
