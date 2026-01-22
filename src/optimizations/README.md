@@ -1,7 +1,7 @@
 ## Optimizations – How to Read This Folder
 
-This folder contains focused experiments and optimization tasks designed to stress-test, compare, and refine specific components of the RAG pipeline after initial feasibility was established.
-Unlike the Initial Analysis stage, notebooks and scripts here are deliberately scoped, comparative, and task-driven, with the goal of improving accuracy, robustness, and scalability across real-world financial PDFs.
+This folder contains focused experiments and optimization tasks designed to evaluate, stress-test, and refine specific components of the RAG pipeline after the initial end-to-end baseline was established.
+Work in this folder is deliberately comparative and task-oriented, answering concrete system design questions around segmentation, model selection, and multi-document retrieval.
 
 # Purpose of This Folder
 - Optimize document ingestion, segmentation, and routing strategies
@@ -11,51 +11,54 @@ Unlike the Initial Analysis stage, notebooks and scripts here are deliberately s
 
 # What’s Included
 1. Full Segmentation Pipeline:
-End-to-end experimentation around document segmentation with metadata outputs
-Explores how structured segmentation improves downstream retrieval, filtering, and answer grounding
+- Builds and evaluates a complete document segmentation pipeline with metadata outputs
+Tests how structured segmentation improves:
+- Retrieval accuracy
+- Filtering and ranking
+- Source attribution in answers
 
 Includes:
-- Task notebook for building the full segmentation pipeline
-- Test PDF(s) used to validate segmentation behavior
+- A task notebook for building the full segmentation workflow (Task_Build_the_Full_Segmentation_Pipeline.ipynb)
+- Test PDFs used to validate segmentation behavior
 
-2. Open-Source vs Closed-Source Model Evaluation
-Comparative evaluation of Gemini vs Mistral Phi-2 on mortgage and contract-style queries
+2. Open-Source vs Closed-Source Model Evaluation:
+Compares Gemini vs Mistral Phi-2 on mortgage and contract-style financial queries
 
-Focuses on:
-- Answer accuracy
-- Relevance to source text
-- Failure modes across different model classes
+Evaluates:
+- Answer correctness
+- Relevance to source documents
+- Model-specific failure patterns
 
 Includes:
-- Evaluation notebook
-- Sample mortgage / contract PDFs used consistently across runs
+- An evaluation notebook (Task_Evaluate_Gemini_vs_Mistral.ipynb)
+- Consistent sample PDFs used across model runs
 
-3. Routing Queries Across Multiple PDFs
+3. Routing Queries Across Multiple PDFs:
 Experiments with query routing and retrieval across multiple financial documents
 
 Tests the system’s ability to:
-- Identify the correct document(s)
+- Identify relevant documents dynamically
 - Avoid cross-document hallucinations
-- Handle overlapping financial concepts (fees, contracts, payslips, disclosures)
+- Handle overlapping financial concepts (fees, contracts, payslips)
 
 Includes:
-- Multiple heterogeneous financial PDFs (contracts, fee worksheets, payslips)
-- A Python task script implementing multi-PDF routing logic
+- Multiple heterogeneous financial PDFs
+- A Python task script implementing multi-PDF routing logic (task_route_queries_across_multiple_pdfs.py)
 
 # How to Navigate
 Each subfolder represents a self-contained optimization question
 
-Notebooks typically follow this pattern:
-- Problem framing
+Notebooks and scripts typically follow:
+- Problem definition
 - Experimental setup
 - Observations and failure cases
-- Implications for the broader RAG system
+- System-level implications
 
-PDFs are intentionally reused across tasks to enable controlled comparisons
+PDFs are reused intentionally to enable controlled, apples-to-apples comparisons
 
 # Important Context
-These notebooks are not exploratory drafts—they are targeted experiments answering specific design questions.
+These are targeted optimization experiments, not exploratory drafts.
 
-Results here directly inform architectural decisions in later pipeline stages
+Results here directly inform architectural decisions in later pipeline stages.
 
-Some files may appear redundant across folders by design, to preserve experimental consistency
+Some files may appear redundant across folders by design, to preserve experimental consistency.
