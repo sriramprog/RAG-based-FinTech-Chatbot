@@ -11,10 +11,19 @@
 *Conducted as part of a consulting externship in collaboration with Outamation through Extern.*
 
 ## Executive Summary
-Financial teams often need fast, reliable answers from complex documents such as statements, agreements, and lender forms. However, extracting the right information typically requires manual review and repeated lookups. This project built an interactive, Retrieval-Augmented Generation (RAG) chatbot that allows users to upload finance-related PDFs and ask natural-language questions to instantly retrieve grounded answers from the document content. The system converts unstructured documents into a searchable knowledge layer using OCR and semantic retrieval, then generates responses that are anchored to the source text for transparency. The goal was to reduce time spent on document review, improve consistency in Q&A, and demonstrate a scalable approach to AI-assisted financial document understanding for Outamation’s document automation workflows.
+Financial teams frequently need fast, reliable answers from complex documents such as statements, agreements, and lender forms. However, extracting information from these documents typically requires manual review, repeated lookups, and contextual interpretation across pages.
+
+This project developed an interactive Retrieval-Augmented Generation (RAG) chatbot that allows users to upload finance-related PDFs and ask natural-language questions to retrieve grounded, explainable answers directly from document content. The system transforms unstructured financial documents into a searchable knowledge layer using OCR and semantic retrieval, then generates responses anchored to source text for transparency.
+
+The goal was to reduce document review time, improve answer consistency, and demonstrate a scalable approach to AI-assisted financial document understanding aligned with Outamation’s document automation workflows.
 
 ### Business Problem
-The primary goal was to reduce the time, effort, and risk associated with extracting answers from unstructured financial documents used in routine and ad hoc decision-making. Finance and operations teams rely on long, inconsistently formatted PDFs that are difficult to search, requiring manual scanning, contextual interpretation, and repeated verification across pages. This process does not scale with document volume and increases the likelihood of missed details or inconsistent responses when timely answers are needed in document-driven workflows.
+Finance and operations teams rely heavily on long, inconsistently formatted PDFs for routine and ad-hoc decision-making. These documents are difficult to search and require manual scanning, increasing time cost and the risk of missed or inconsistent answers.
+
+As document volume grows, manual review does not scale. Teams need a system that can:
+1. Retrieve relevant information quickly
+2. Preserve context across sections and pages
+3. Provide answers that are traceable back to source documents
 
 # Basic Retrieval-Augmented Generation (RAG) Pipeline
 
@@ -49,13 +58,32 @@ By grounding LLM responses in retrieved source content, RAG improves:
 This pipeline forms the foundation for scalable, document-aware question-answering systems.
 
 ### Methodology
-1. [Step 1 – data ingestion / document parsing]
-2. [Step 2 – chunking / embeddings / vector DB]
-3. [Step 3 – retrieval + prompt + response generation]
-4. [Step 4 – evaluation + iteration / improvements]
+Step 1: Document Ingestion & Parsing
+- Processed scanned and digital financial PDFs
+- Applied OCR where necessary to extract machine-readable text
+
+Step 2: Chunking, Embeddings & Vector Storage
+- Split documents into semantically meaningful chunks
+- Generated embeddings and stored them in a vector database for retrieval
+
+Step 3: Retrieval & Answer Generation
+- Retrieved top-K relevant chunks based on query similarity
+- Constructed prompts combining user queries with retrieved context
+- Generated responses using an LLM grounded in document content
+
+Step 4: Evaluation & Iteration
+- Tested query phrasing, chunking strategies, and retrieval parameters
+- Evaluated answer quality, faithfulness, and failure cases
+- Iterated on segmentation, routing, and model selection
 
 ### Skills
-- [Skills list]
+- Retrieval-Augmented Generation (RAG)
+- OCR & document parsing
+- Semantic search & vector databases
+- Chunking and embedding strategies
+- LLM-based question answering
+- Python, notebooks, and modular pipeline design
+- Model evaluation and error analysis
 
 ### Results & Business Recommendations
 **Results**
