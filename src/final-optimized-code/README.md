@@ -1,4 +1,4 @@
-## RAG Chatbot UI – Folder Overview
+## Final Optimized Code – How to Read
 
 This folder contains the application-layer code for a Document Intelligence RAG system.
 Its purpose is to wire together PDF ingestion, retrieval configuration, and question answering into a single, inspectable interface that demonstrates how the backend pipeline is orchestrated end to end.
