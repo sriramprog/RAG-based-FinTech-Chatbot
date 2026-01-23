@@ -87,7 +87,56 @@ Step 4: Evaluation & Iteration
 
 ### Results & Business Recommendations
 **Results**
-- [What the chatbot enables / improves]
+- Enabled natural-language question answering over complex financial PDFs, including scanned mortgage documents, contracts, and fee worksheets
+- Reduced the need for manual page-by-page document scanning by surfacing contextually relevant sections on demand
+- Improved answer reliability by grounding responses in retrieved document chunks rather than free-form generation
+- Demonstrated explainable Q&A, where responses can be traced back to specific portions of source documents
+- Validated that a modular RAG pipeline can generalize across multiple financial document types without document-specific rules
+
+**Overall Outcome:** the system shows how AI-assisted document understanding can significantly streamline financial review workflows while preserving transparency and auditability.
 
 **Business Recommendations**
-- [How a team could implement/extend]
+- Embed RAG-based Q&A into document automation workflows to reduce time spent on repetitive financial document review
+- Introduce document-type classification and routing (e.g., mortgage, contract, payslip) to further improve retrieval precision
+- Add inline source highlighting and citations to support compliance, audit, and trust requirements
+- Monitor retrieval quality using query logs and feedback to iteratively tune chunking and embedding strategies
+- Deploy as an internal tool for finance, compliance, or operations teams handling high document volumes before external-facing use
+
+### Live Demo
+A short walkthrough video is included below to demonstrate the system end-to-end, including PDF ingestion, retrieval configuration, and question answering.
+
+📹 Demo: AI-Powered Financial Q&A Chatbot – Live Walkthrough
+(Upload video file here or embed link)
+_The demo highlights system behavior under real document inputs rather than curated examples._
+
+Once uploaded, GitHub will render the video inline for easy viewing.
+
+### Limitations & Next Steps
+**Current Limitations**
+1. Retrieval quality depends on chunking strategy
+While the system performs well on most queries, answer quality is sensitive to how documents are segmented. Poor chunk boundaries can occasionally omit relevant context or retrieve partially related sections.
+
+2. No persistent feedback loop
+The current implementation does not store user feedback or query performance metrics, limiting automated evaluation and continuous improvement over time.
+
+3. Document processing is synchronous
+PDF ingestion and indexing occur in a single workflow, which may introduce latency for large or multi-document uploads in a production setting.
+
+4. Limited citation surfacing in the UI
+Although answers are grounded in retrieved chunks, the UI does not yet expose fine-grained inline citations or page-level highlighting.
+
+**Next Steps**
+1. Introduce adaptive chunking and metadata-aware retrieval
+Incorporate document structure (sections, headers, page numbers) and metadata to improve retrieval precision and reduce context fragmentation.
+
+2. Add retrieval evaluation and feedback logging
+Capture query logs, retrieved chunks, and user feedback to enable systematic evaluation and tuning of retrieval performance.
+
+3. Implement asynchronous document processing
+Move ingestion and indexing to background jobs to support larger documents and higher throughput.
+
+4. Enhance explainability with source highlighting
+Surface exact page references and highlighted text spans to improve trust, auditability, and usability for financial workflows.
+
+5. Extend to multi-document and cross-document queries
+Expand support for questions that require reasoning across multiple related financial documents.
