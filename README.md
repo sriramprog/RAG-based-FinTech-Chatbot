@@ -109,30 +109,39 @@ Once uploaded, GitHub will render the video inline for easy viewing.
 
 ### Limitations & Next Steps
 **Current Limitations**
-1. Retrieval quality depends on chunking strategy
+1. Retrieval quality depends on chunking strategy:
+   
 While the system performs well on most queries, answer quality is sensitive to how documents are segmented. Poor chunk boundaries can occasionally omit relevant context or retrieve partially related sections.
 
-2. No persistent feedback loop
+2. No persistent feedback loop:
+   
 The current implementation does not store user feedback or query performance metrics, limiting automated evaluation and continuous improvement over time.
 
-3. Document processing is synchronous
+3. Document processing is synchronous:
+   
 PDF ingestion and indexing occur in a single workflow, which may introduce latency for large or multi-document uploads in a production setting.
 
-4. Limited citation surfacing in the UI
+4. Limited citation surfacing in the UI:
+   
 Although answers are grounded in retrieved chunks, the UI does not yet expose fine-grained inline citations or page-level highlighting.
 
 **Next Steps**
-1. Introduce adaptive chunking and metadata-aware retrieval
+1. Introduce adaptive chunking and metadata-aware retrieval:
+   
 Incorporate document structure (sections, headers, page numbers) and metadata to improve retrieval precision and reduce context fragmentation.
 
-2. Add retrieval evaluation and feedback logging
+2. Add retrieval evaluation and feedback logging:
+   
 Capture query logs, retrieved chunks, and user feedback to enable systematic evaluation and tuning of retrieval performance.
 
-3. Implement asynchronous document processing
+3. Implement asynchronous document processing:
+   
 Move ingestion and indexing to background jobs to support larger documents and higher throughput.
 
-4. Enhance explainability with source highlighting
+4. Enhance explainability with source highlighting:
+   
 Surface exact page references and highlighted text spans to improve trust, auditability, and usability for financial workflows.
 
-5. Extend to multi-document and cross-document queries
+5. Extend to multi-document and cross-document queries:
+   
 Expand support for questions that require reasoning across multiple related financial documents.
