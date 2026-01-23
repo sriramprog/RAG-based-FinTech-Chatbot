@@ -103,6 +103,10 @@ Step 4: Evaluation & Iteration
 - Deploy as an internal tool for finance, compliance, or operations teams handling high document volumes before external-facing use
 
 ### Live Demo
+<img width="1891" height="906" alt="Chatbot landing page" src="https://github.com/user-attachments/assets/0843d9dd-8ead-478c-bd37-fc8afe434fdb" />
+_**NOTE: A few screenshots of the UI in action will be included here.
+**_
+
 A short walkthrough video is included below to demonstrate the system end-to-end, including PDF ingestion, retrieval configuration, and question answering.
 
 📹 Demo: AI-Powered Financial Q&A Chatbot – Live Walkthrough
