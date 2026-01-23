@@ -30,7 +30,7 @@ As document volume grows, manual review does not scale. Teams need a system that
 
 This diagram above illustrates a standard and basic Retrieval-Augmented Generation (RAG) workflow, accompanied by an overview of what each step is and why it is done.
 
-Step 1: Document Ingestion & Parsing
+***Step 1: Document Ingestion & Parsing***
 
 In the ingestion stage, the system processes both scanned and digitally generated financial PDFs to prepare them for downstream retrieval and question answering. Documents are loaded directly from file uploads and inspected to determine whether text is machine-readable or requires OCR processing.
 
@@ -38,7 +38,7 @@ For scanned documents, OCR is applied to extract textual content while preservin
 
 This ingestion and parsing process is performed once per document and serves as the foundation for all subsequent retrieval and generation steps.
 
-Step 2: Chunking, Embeddings & Vector Storage
+***Step 2: Chunking, Embeddings & Vector Storage***
 
 After parsing, document text is segmented into semantically meaningful chunks to balance contextual completeness with retrieval efficiency. Chunking strategies are designed to minimize context fragmentation while ensuring that relevant sections can be independently retrieved in response to user queries.
 
@@ -46,7 +46,7 @@ Each chunk is transformed into a vector embedding that captures its semantic mea
 
 This step establishes the searchable representation of the document corpus used throughout the system.
 
-Step 3: Retrieval & Answer Generation
+***Step 3: Retrieval & Answer Generation***
 
 When a user submits a question, the query is converted into a vector embedding and compared against stored document embeddings using similarity search. The system retrieves the top-K most relevant chunks based on semantic similarity to the query.
 
@@ -54,7 +54,7 @@ The retrieved chunks are combined with the user’s question to construct a prom
 
 This retrieval-augmented generation process ensures that answers are directly anchored to source material rather than relying solely on the model’s prior knowledge.
 
-Step 4: Evaluation & Iteration
+***Step 4: Evaluation & Iteration***
 
 To improve system reliability, the pipeline is iteratively evaluated across different query types, document structures, and retrieval configurations. Query phrasing, chunk size, overlap, and top-K retrieval parameters are tested to understand their impact on answer relevance and completeness.
 
