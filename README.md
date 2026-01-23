@@ -25,56 +25,48 @@ As document volume grows, manual review does not scale. Teams need a system that
 2. Preserve context across sections and pages
 3. Provide answers that are traceable back to source documents
 
-# Basic Retrieval-Augmented Generation (RAG) Pipeline
-
+### Methodology
 <img width="2587" height="2338" alt="basic rag pipeline" src="https://github.com/user-attachments/assets/825e99ff-5f56-4acc-a37a-6dc5045fed0c" />
 
-This diagram above illustrates a standard Retrieval-Augmented Generation (RAG) workflow, divided into two main stages: Data Indexing and Data Retrieval & Generation.
+This diagram above illustrates a standard and basic Retrieval-Augmented Generation (RAG) workflow, accompanied by an overview of what each step is and why it is done.
 
-1. Data Indexing
+Step 1: Document Ingestion & Parsing
 
-In the indexing stage, source documents are prepared for retrieval:
-- Documents are loaded from external sources (e.g., PDFs).
-- The text is split into smaller chunks to preserve context while enabling efficient search.
-- Each chunk is converted into a vector embedding, capturing its semantic meaning.
-- These embeddings are stored in a vector database, which serves as the searchable knowledge store.
+In the ingestion stage, the system processes both scanned and digitally generated financial PDFs to prepare them for downstream retrieval and question answering. Documents are loaded directly from file uploads and inspected to determine whether text is machine-readable or requires OCR processing.
 
-This stage is performed once per document (or whenever documents change).
+For scanned documents, OCR is applied to extract textual content while preserving layout structure where possible. This step ensures that key financial information embedded in tables, disclosures, and multi-page forms is converted into a usable text representation suitable for semantic indexing.
 
-2. Data Retrieval & Generation
+This ingestion and parsing process is performed once per document and serves as the foundation for all subsequent retrieval and generation steps.
 
-In the query stage, user questions are answered using the indexed data:
-- A user query is embedded into the same vector space as the document chunks.
-- The vector database performs similarity search to retrieve the top-K most relevant chunks.
-- The retrieved chunks are provided as context to a large language model (LLM).
-- The LLM generates a grounded response based on both the user query and the retrieved document context.
+Step 2: Chunking, Embeddings & Vector Storage
 
-3. Why RAG?
+After parsing, document text is segmented into semantically meaningful chunks to balance contextual completeness with retrieval efficiency. Chunking strategies are designed to minimize context fragmentation while ensuring that relevant sections can be independently retrieved in response to user queries.
+
+Each chunk is transformed into a vector embedding that captures its semantic meaning. These embeddings are stored in a vector database, enabling similarity-based search across all document content. The vector store acts as a persistent knowledge layer, allowing relevant document sections to be retrieved dynamically at query time.
+
+This step establishes the searchable representation of the document corpus used throughout the system.
+
+Step 3: Retrieval & Answer Generation
+
+When a user submits a question, the query is converted into a vector embedding and compared against stored document embeddings using similarity search. The system retrieves the top-K most relevant chunks based on semantic similarity to the query.
+
+The retrieved chunks are combined with the user’s question to construct a prompt that provides grounded context to a large language model (LLM). The LLM then generates a response that is informed by both the query and the retrieved document content, reducing hallucinations and improving factual accuracy.
+
+This retrieval-augmented generation process ensures that answers are directly anchored to source material rather than relying solely on the model’s prior knowledge.
+
+Step 4: Evaluation & Iteration
+
+To improve system reliability, the pipeline is iteratively evaluated across different query types, document structures, and retrieval configurations. Query phrasing, chunk size, overlap, and top-K retrieval parameters are tested to understand their impact on answer relevance and completeness.
+
+Generated responses are assessed for faithfulness to source documents, coverage of relevant information, and failure modes such as partial context retrieval or incorrect grounding. Based on these observations, segmentation strategies, routing logic, and model selection are refined to improve overall system performance.
+
+This iterative evaluation process helps transition the system from a baseline RAG implementation to a more robust, production-oriented design.
+
+**Why RAG?**
 By grounding LLM responses in retrieved source content, RAG improves:
 - Factual accuracy
 - Explainability (answers can be traced back to source chunks)
 - Domain adaptability without retraining the model
-
-This pipeline forms the foundation for scalable, document-aware question-answering systems.
-
-### Methodology
-Step 1: Document Ingestion & Parsing
-- Processed scanned and digital financial PDFs
-- Applied OCR where necessary to extract machine-readable text
-
-Step 2: Chunking, Embeddings & Vector Storage
-- Split documents into semantically meaningful chunks
-- Generated embeddings and stored them in a vector database for retrieval
-
-Step 3: Retrieval & Answer Generation
-- Retrieved top-K relevant chunks based on query similarity
-- Constructed prompts combining user queries with retrieved context
-- Generated responses using an LLM grounded in document content
-
-Step 4: Evaluation & Iteration
-- Tested query phrasing, chunking strategies, and retrieval parameters
-- Evaluated answer quality, faithfulness, and failure cases
-- Iterated on segmentation, routing, and model selection
 
 ### Skills
 - Retrieval-Augmented Generation (RAG)
